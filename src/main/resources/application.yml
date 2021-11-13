@@ -1,0 +1,15 @@
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.expample.spring.bean
+
+#数据库连接池
+spring:
+  datasource:
+    name: springboot
+    username: root
+    password: woaiwo52710
+    url: jdbc:mysql://localhost:3306/springboot?serverTimezone=Asia/Shanghai&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  freemarker:
+    suffix: .html
