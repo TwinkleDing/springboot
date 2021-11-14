@@ -18,7 +18,7 @@ public class WebMavConfig {
                         //放行哪些原始域
                         .allowedOrigins("*")
                         //是否发送Cookie信息
-                        .allowCredentials(true)
+//                        .allowCredentials(true)
                         //放行哪些原始域(请求方式)
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         //放行哪些原始域(头部信息)
