@@ -29,8 +29,8 @@ public interface UserDao {
      * 根据查询数据
      *
      */
-    @Select("select id,email,password,username from user where username=#{userName} AND password=#{password")
-    User findByName(@Param("userName") String userName, @Param("password") String password);
+    @Select("select username from user where username=#{userName} AND password=#{password}")
+    String findByName(@Param("userName") String userName, @Param("password") String password);
 
     /**
      * 查询所有数据

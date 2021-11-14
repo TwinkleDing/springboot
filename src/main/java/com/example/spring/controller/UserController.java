@@ -33,8 +33,10 @@ public class UserController {
 
 
     @RequestMapping(value = "/userGet", method = RequestMethod.POST)
-    public User findByUserName(@RequestParam(value = "userName", required = true) String userName, @RequestParam(value = "password", required = true) String password) {
-        System.out.println("查询数据：");
+    public String findByUserName(@RequestBody User user) {
+        System.out.println("查询数据：" + user.getUsername());
+        String userName = user.getUsername();
+        String password = user.getPassword();
         return userService.findUserByName(userName, password);
     }
 

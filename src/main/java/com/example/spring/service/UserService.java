@@ -29,8 +29,9 @@ public interface UserService {
     /**
      * 根据名字查询用户信息
      * @param userName
+     * @param password
      */
-    User findUserByName(String userName, String password);
+    String findUserByName(String userName, String password);
 
 
     /**
