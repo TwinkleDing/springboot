@@ -10,7 +10,7 @@ public interface UserDao {
     /**
      * 新增数据
      */
-    @Insert("insert into user(id,email,password,username) values (#{id},#{email},#{password},#{username})")
+    @Insert("insert into user(password,username) values (#{password},#{username})")
     void addUser(User user);
 
     /**
@@ -29,8 +29,8 @@ public interface UserDao {
      * 根据查询数据
      *
      */
-    @Select("select id,email,password,username from user where username=#{userName}")
-    User findByName(@Param("userName") String userName);
+    @Select("select id,email,password,username from user where username=#{userName} AND password=#{password")
+    User findByName(@Param("userName") String userName, @Param("password") String password);
 
     /**
      * 查询所有数据

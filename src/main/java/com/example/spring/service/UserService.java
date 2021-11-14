@@ -30,7 +30,7 @@ public interface UserService {
      * 根据名字查询用户信息
      * @param userName
      */
-    User findUserByName(String userName);
+    User findUserByName(String userName, String password);
 
 
     /**
