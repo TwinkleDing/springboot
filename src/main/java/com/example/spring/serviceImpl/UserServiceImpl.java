@@ -16,6 +16,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean addUser(User user) {
         boolean flag = false;
+        System.out.println("adduser："+user.getId());
         try {
             userDao.addUser(user);
             flag = true;
