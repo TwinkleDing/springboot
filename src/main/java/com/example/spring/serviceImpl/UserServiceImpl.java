@@ -17,7 +17,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean addUser(User user) {
         boolean flag = false;
-        String username = findUserByName(user.getUsername(), user.getPassword());
+        String username = findUserByName(user.getUsername());
+        System.out.println("更新数据id："+username);
+        if (username != null) {
+            return false;
+        }
         try {
             String s = UUID.randomUUID().toString();//用来生成数据库的主键id非常不错。。
             String id = s.substring(0, 8) + s.substring(9, 13) + s.substring(14, 18) + s.substring(19, 23) + s.substring(24);
@@ -55,8 +59,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String findUserByName(String userName, String password) {
-        return userDao.findByName(userName, password);
+    public String findUserByName(String userName) {
+        return userDao.findByName(userName);
+    }
+
+    @Override
+    public String findUserByNamePassword(String userName, String password) {
+        return userDao.findUserByNamePassword(userName, password);
     }
 
 

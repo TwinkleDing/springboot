@@ -39,7 +39,7 @@ public class UserController {
         System.out.println("查询数据：" + user.getUsername());
         String userName = user.getUsername();
         String password = user.getPassword();
-        String username = userService.findUserByName(userName, password);
+        String username = userService.findUserByNamePassword(userName, password);
         return JSONResult.success(username);
     }
 
