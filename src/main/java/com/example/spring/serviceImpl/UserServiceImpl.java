@@ -18,14 +18,11 @@ public class UserServiceImpl implements UserService {
     public boolean addUser(User user) {
         boolean flag = false;
         String username = findUserByName(user.getUsername(), user.getPassword());
-        if (username == null) {
-            return false;
-        }
         try {
-            userDao.addUser(user);
             String s = UUID.randomUUID().toString();//用来生成数据库的主键id非常不错。。
             String id = s.substring(0, 8) + s.substring(9, 13) + s.substring(14, 18) + s.substring(19, 23) + s.substring(24);
             user.setId(id);
+            userDao.addUser(user);
             flag = true;
         } catch (Exception e) {
             e.printStackTrace();
