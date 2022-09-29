@@ -14,39 +14,43 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/userAdd", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/register", method = RequestMethod.POST)
     public JSONResult<Boolean> addUser(@RequestBody User user) {
         System.out.println("注册用户：");
         boolean flag = userService.addUser(user);
         return JSONResult.success(flag);
     }
 
-    @RequestMapping(value = "/userUpdate", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/userUpdate", method = RequestMethod.POST)
     public boolean updateUser(@RequestBody User user) {
         System.out.println("更新数据：");
         return userService.updateUser(user);
     }
 
-    @RequestMapping(value = "/userDelete", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/userDelete", method = RequestMethod.POST)
     public boolean delete(@RequestParam(value = "id", required = true) int Id) {
         System.out.println("删除数据：");
         return userService.deleteUser(Id);
     }
 
 
-    @RequestMapping(value = "/userGet", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/login", method = RequestMethod.POST)
     public JSONResult<String> findByUserName(@RequestBody User user) {
         System.out.println("查询数据：" + user.getUsername());
         String userName = user.getUsername();
         String password = user.getPassword();
-        String username = userService.findUserByNamePassword(userName, password);
-        return JSONResult.success(username);
+        String hasUserName = userService.findUserByNamePassword(userName, password);
+        if (hasUserName == null) {
+            return JSONResult.failedMsg("登录失败，账号或密码错误！");
+        } else {
+            return JSONResult.success(hasUserName, "登录成功！");
+        }
     }
 
-    @RequestMapping(value = "/userAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/userAll", method = RequestMethod.GET)
     public JSONResult<List<User>> findByUserAge() {
         System.out.println("查询所有数据:");
-        List<User> list =  userService.findAll();
+        List<User> list = userService.findAll();
         return JSONResult.success(list);
     }
 }

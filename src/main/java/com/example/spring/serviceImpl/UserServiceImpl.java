@@ -3,8 +3,8 @@ package com.example.spring.serviceImpl;
 import com.example.spring.bean.User;
 import com.example.spring.dao.UserDao;
 import com.example.spring.service.UserService;
-import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
     public boolean addUser(User user) {
         boolean flag = false;
         String username = findUserByName(user.getUsername());
-        System.out.println("更新数据id："+username);
+        System.out.println("更新数据id：" + username);
         if (username != null) {
             return false;
         }

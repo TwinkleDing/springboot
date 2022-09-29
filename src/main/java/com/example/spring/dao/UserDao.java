@@ -3,6 +3,7 @@ package com.example.spring.dao;
 
 import com.example.spring.bean.User;
 import org.apache.ibatis.annotations.*;
+
 import java.util.List;
 
 @Mapper
@@ -27,14 +28,12 @@ public interface UserDao {
 
     /**
      * 根据查询数据
-     *
      */
     @Select("select username from user where username=#{userName}")
     String findByName(@Param("userName") String userName);
 
     /**
      * 根据查询数据
-     *
      */
     @Select("select username from user where username=#{userName} AND password=#{password}")
     String findUserByNamePassword(@Param("userName") String userName, @Param("password") String password);
