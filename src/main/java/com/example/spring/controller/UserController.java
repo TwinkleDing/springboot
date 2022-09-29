@@ -18,7 +18,11 @@ public class UserController {
     public JSONResult<Boolean> addUser(@RequestBody User user) {
         System.out.println("注册用户：");
         boolean flag = userService.addUser(user);
-        return JSONResult.success(flag);
+        if (flag) {
+            return JSONResult.successMsg("注册成功！");
+        } else {
+            return JSONResult.failedMsg("注册失败，账号可能重复！");
+        }
     }
 
     @RequestMapping(value = "/api/userUpdate", method = RequestMethod.POST)
