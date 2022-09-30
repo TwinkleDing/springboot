@@ -8,16 +8,12 @@ public interface UserService {
     /**
      * 新增用户
      *
-     * @param user
-     * @return
      */
     boolean addUser(User user);
 
     /**
      * 修改用户
      *
-     * @param user
-     * @return
      */
     boolean updateUser(User user);
 
@@ -25,22 +21,18 @@ public interface UserService {
     /**
      * 删除用户
      *
-     * @param id
-     * @return
      */
     boolean deleteUser(int id);
 
     /**
      * 根据名字查询用户信息
      *
-     * @param userName
      */
     String findUserByName(String userName);
 
     /**
      * 查询名字和密码是否正确
      *
-     * @param userName
      */
     String findUserByNamePassword(String userName, String password);
 
@@ -48,7 +40,6 @@ public interface UserService {
     /**
      * 查询所有数据
      *
-     * @return
      */
     List<User> findAll();
 }

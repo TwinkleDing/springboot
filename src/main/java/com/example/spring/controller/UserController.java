@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/")
+@RequestMapping(value = "/api/")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/api/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public JSONResult<Boolean> addUser(@RequestBody User user) {
         System.out.println("注册用户：");
         boolean flag = userService.addUser(user);
@@ -25,20 +25,19 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/api/userUpdate", method = RequestMethod.POST)
+    @RequestMapping(value = "/userUpdate", method = RequestMethod.POST)
     public boolean updateUser(@RequestBody User user) {
         System.out.println("更新数据：");
         return userService.updateUser(user);
     }
 
-    @RequestMapping(value = "/api/userDelete", method = RequestMethod.POST)
+    @RequestMapping(value = "/userDelete", method = RequestMethod.POST)
     public boolean delete(@RequestParam(value = "id", required = true) int Id) {
         System.out.println("删除数据：");
         return userService.deleteUser(Id);
     }
 
-
-    @RequestMapping(value = "/api/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public JSONResult<String> findByUserName(@RequestBody User user) {
         System.out.println("查询数据：" + user.getUsername());
         String userName = user.getUsername();
@@ -51,7 +50,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/api/userAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/userAll", method = RequestMethod.GET)
     public JSONResult<List<User>> findByUserAge() {
         System.out.println("查询所有数据:");
         List<User> list = userService.findAll();
