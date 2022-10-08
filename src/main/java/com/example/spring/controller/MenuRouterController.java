@@ -22,7 +22,7 @@ public class MenuRouterController {
     @RequestMapping(value = "/menuRouter", method = RequestMethod.GET)
     public JSONResult<List<MenuRouter>> getRouterList() {
         List<MenuRouter> list = menuRouterService.getRouterList();
-        List<MenuRouter> result = ZoneUtils.buildTree1(list);
+        List<MenuRouter> result = ZoneUtils.buildTree2(list);
         log.info(String.valueOf(result));
         return JSONResult.success(result);
     }

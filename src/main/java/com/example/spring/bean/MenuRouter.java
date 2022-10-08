@@ -1,7 +1,11 @@
 package com.example.spring.bean;
 
+import com.example.spring.utils.MetaConfig;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.List;
 
+@Slf4j
 public class MenuRouter {
     private String path;
 
@@ -25,12 +29,14 @@ public class MenuRouter {
 
     private List<MenuRouter> children;
 
+    private MetaConfig meta;
+
     public String getPath() {
         return this.path;
     }
 
     public void setPath(String path) {
-        this.path = name;
+        this.path = path;
     }
 
     public String getName() {
@@ -73,32 +79,16 @@ public class MenuRouter {
         this.parent_id = parent_id;
     }
 
-    public String getLabel() {
-        return this.label;
-    }
-
     public void setLabel(String label) {
         this.label = label;
-    }
-
-    public String getIcon() {
-        return this.icon;
     }
 
     public void setIcon(String icon) {
         this.icon = icon;
     }
 
-    public int getPermission() {
-        return this.permission;
-    }
-
     public void setPermission(int permission) {
         this.permission = permission;
-    }
-
-    public int getTier() {
-        return this.tier;
     }
 
     public void setTire(int tier) {
@@ -111,5 +101,19 @@ public class MenuRouter {
 
     public void setChildren(List<MenuRouter> children) {
         this.children = children;
+    }
+
+    public MetaConfig getMeta() {
+        this.setMeta();
+        return this.meta;
+    }
+
+    public void setMeta() {
+        MetaConfig meta = new MetaConfig();
+        meta.setIcon(this.icon);
+        meta.setLabel(this.label);
+        meta.setPermission(this.permission);
+        meta.setTire(this.tier);
+        this.meta = meta;
     }
 }
