@@ -1,7 +1,6 @@
 package com.example.spring.service;
 
 import com.example.spring.bean.MenuRouter;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

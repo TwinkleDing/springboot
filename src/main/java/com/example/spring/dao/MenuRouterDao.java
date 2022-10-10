@@ -7,7 +7,6 @@ import java.util.List;
 
 @Mapper
 public interface MenuRouterDao {
-
     /**
      * 获取路由信息
      */
