@@ -6,10 +6,7 @@ import com.example.spring.utils.JSONResult;
 import com.example.spring.utils.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +26,16 @@ public class SystemLogController {
         page.setPageSize(size);
         page.setTotal(total);
         page.setList(list);
-        return JSONResult.success(page);
+        return JSONResult.successGet(page);
+    }
+
+    @RequestMapping(value = "/systemLog", method = RequestMethod.DELETE)
+    public JSONResult<String> deleteLog(@RequestBody String id) {
+        boolean deleteFlag =  systemLogService.deleteLog(id);
+        if (deleteFlag) {
+            return JSONResult.successDelete(id);
+        } else {
+            return JSONResult.failedDelete(id);
+        }
     }
 }

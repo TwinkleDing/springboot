@@ -11,10 +11,14 @@ public interface SystemLogDao {
     /**
      * 获取日志列表
      */
-//    @Select("select * FROM sys_log LIMIT #{start} , #{end}")
-    @Select("select * FROM sys_log where id > #{start} order by id limit #{end}")
+    @Select("select * FROM sys_log LIMIT #{start} , #{end}")
+//    上面方法简单，但是数据量过多容易卡顿，下列方法性能更好，但是要设置主键或唯一索引
+//    @Select("select * FROM sys_log where id > #{start} order by id limit #{end}")
     List<SystemLog> getSystemLogList(int start, int end);
 
-    @Select("select count(*) from sys_log")
+    @Select("select count(id) from sys_log")
     int getSystemLogTotal();
+
+    @Select("delete from sys_log where id=#{id}")
+    void deleteLog(String id);
 }

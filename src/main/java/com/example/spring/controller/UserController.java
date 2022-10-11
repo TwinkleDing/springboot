@@ -54,6 +54,6 @@ public class UserController {
     public JSONResult<List<User>> findByUserAge() {
         System.out.println("查询所有数据:");
         List<User> list = userService.findAll();
-        return JSONResult.success(list);
+        return JSONResult.successGet(list);
     }
 }

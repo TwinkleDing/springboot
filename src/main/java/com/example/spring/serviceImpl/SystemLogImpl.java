@@ -23,4 +23,16 @@ public class SystemLogImpl implements SystemLogService {
     public int getSystemLogTotal() {
         return systemLogDao.getSystemLogTotal();
     }
+
+    @Override
+    public boolean deleteLog(String id) {
+        boolean flag = false;
+        try {
+            systemLogDao.deleteLog(id);
+            flag = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
 }

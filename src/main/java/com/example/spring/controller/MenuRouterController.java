@@ -24,6 +24,6 @@ public class MenuRouterController {
         List<MenuRouter> list = menuRouterService.getRouterList();
         List<MenuRouter> result = ZoneUtils.buildTree2(list);
         log.info(String.valueOf(result));
-        return JSONResult.success(result);
+        return JSONResult.successGet(result);
     }
 }
