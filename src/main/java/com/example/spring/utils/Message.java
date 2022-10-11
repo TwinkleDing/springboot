@@ -26,11 +26,11 @@ public class Message<T> {
     }
 
     public static <T> Message<T> custom(int status, String message, T data) {
-        return new Message(status, message, data);
+        return new Message<>(status, message, data);
     }
 
     public static <T> Message<T> custom(int status, String message) {
-        return new Message(status, message);
+        return new Message<>(status, message);
     }
 
     public static HttpStatus num2HttpStatus(int code) {
