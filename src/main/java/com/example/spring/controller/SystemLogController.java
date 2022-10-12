@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -31,11 +32,33 @@ public class SystemLogController {
 
     @RequestMapping(value = "/systemLog", method = RequestMethod.DELETE)
     public JSONResult<String> deleteLog(@RequestBody String id) {
-        boolean deleteFlag =  systemLogService.deleteLog(id);
+        boolean deleteFlag = systemLogService.deleteLog(id);
         if (deleteFlag) {
-            return JSONResult.successDelete(id);
+            return JSONResult.successDelete();
         } else {
-            return JSONResult.failedDelete(id);
+            return JSONResult.failedDelete("删除失败，请重试！");
+        }
+    }
+
+    @RequestMapping(value = "/systemLog/deleteSelect", method = RequestMethod.DELETE)
+    public JSONResult<String> deleteLogSelect(@RequestBody String[] idList) {
+        log.info(Arrays.toString(idList));
+        log.info(String.valueOf(idList));
+        boolean deleteFlag = systemLogService.deleteLogSelect(idList);
+        if (deleteFlag) {
+            return JSONResult.successDelete();
+        } else {
+            return JSONResult.failedDelete("删除失败，请重试！");
+        }
+    }
+
+    @RequestMapping(value = "/systemLog/deleteAll", method = RequestMethod.DELETE)
+    public JSONResult<String> deleteLogAll() {
+        boolean deleteFlag = systemLogService.deleteLogAll();
+        if (deleteFlag) {
+            return JSONResult.successDelete();
+        } else {
+            return JSONResult.failedDelete("删除失败，请重试！");
         }
     }
 }

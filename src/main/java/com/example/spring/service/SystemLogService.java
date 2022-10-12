@@ -27,4 +27,17 @@ public interface SystemLogService {
      * @return 是否删除成功
      */
     boolean deleteLog(String id);
+
+    /**
+     * 删除选中日志
+     * @param idList id列表
+     * @return 是否删除成功
+     */
+    boolean deleteLogSelect(String[] idList);
+
+    /**
+     * 删除全部日志
+     * @return 是否删除成功
+     */
+    boolean deleteLogAll();
 }

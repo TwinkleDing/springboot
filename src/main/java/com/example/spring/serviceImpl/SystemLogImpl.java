@@ -35,4 +35,28 @@ public class SystemLogImpl implements SystemLogService {
         }
         return flag;
     }
+
+    @Override
+    public boolean deleteLogSelect(String[] idList) {
+        boolean flag = false;
+        try {
+            systemLogDao.deleteLogSelect(idList);
+            flag = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+    @Override
+    public boolean deleteLogAll() {
+        boolean flag = false;
+        try {
+            systemLogDao.deleteLogAll();
+            flag = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
 }

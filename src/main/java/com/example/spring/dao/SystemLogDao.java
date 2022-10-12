@@ -1,7 +1,9 @@
 package com.example.spring.dao;
 
 import com.example.spring.bean.SystemLog;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -19,6 +21,12 @@ public interface SystemLogDao {
     @Select("select count(id) from sys_log")
     int getSystemLogTotal();
 
-    @Select("delete from sys_log where id=#{id}")
+    @Delete("delete from sys_log where id=#{id}")
     void deleteLog(String id);
+
+    @Delete("delete from sys_log where id in (#{idList})")
+    void deleteLogSelect(@Param("idList") String[] idList);
+
+    @Delete("truncate table sys_log")
+    void deleteLogAll();
 }

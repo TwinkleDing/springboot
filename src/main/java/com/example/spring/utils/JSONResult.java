@@ -17,6 +17,10 @@ public class JSONResult<T> extends ResponseEntity<Message<T>> {
         super(Message.custom(code, msg), Message.num2HttpStatus(code));
     }
 
+    public static <T> JSONResult<T> success() {
+        return new JSONResult<>(200, "操作成功！", null);
+    }
+
     public static <T> JSONResult<T> success(T data) {
         return new JSONResult<>(200, "操作成功！", data);
     }
@@ -41,8 +45,8 @@ public class JSONResult<T> extends ResponseEntity<Message<T>> {
         return new JSONResult<>(200, "修改成功！", data);
     }
 
-    public static <T> JSONResult<T> successDelete(T data) {
-        return new JSONResult<>(200, "删除成功！", data);
+    public static <T> JSONResult<T> successDelete() {
+        return new JSONResult<>(200, "删除成功！", null);
     }
 
     public static <T> JSONResult<T> failed(T data) {
