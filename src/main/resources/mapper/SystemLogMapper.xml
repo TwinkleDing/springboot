@@ -5,8 +5,7 @@
 <mapper namespace="com.example.spring.dao.SystemLogDao">
     <delete id="deleteLogSelect" parameterType="String">
         delete from sys_log where id in
-        <foreach item="id" collection="idList" open="("
-                 separator="," close=")">
+        <foreach item="id" collection="idList" open="(" separator="," close=")">
             #{id}
         </foreach>
     </delete>
