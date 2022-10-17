@@ -45,7 +45,6 @@ public interface SystemLogDao {
      *
      * @param idList i列表
      */
-    @Delete("delete from sys_log where id in (#{idList})")
     void deleteLogSelect(@Param("idList") String[] idList);
 
     /**

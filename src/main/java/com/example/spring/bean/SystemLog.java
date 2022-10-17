@@ -37,8 +37,8 @@ public class SystemLog {
         return log_content;
     }
 
-    public void setLogContent(String log_content) {
-        this.log_content = log_content;
+    public void setLogContent(String logContent) {
+        this.log_content = logContent;
     }
 
     public String getUserid() {
