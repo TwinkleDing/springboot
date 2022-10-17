@@ -1,6 +1,7 @@
 package com.example.spring.controller;
 
 import com.example.spring.bean.User;
+import com.example.spring.service.MenuRouterService;
 import com.example.spring.service.UserService;
 import com.example.spring.utils.JSONResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +9,26 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * @author TwinkleDing
+ */
 @RestController
 @RequestMapping(value = "/api/")
 public class UserController {
-    @Autowired
-    private UserService userService;
 
+    private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    /**
+     * 注册
+     *
+     * @param user 用户信息
+     * @return 注册结果
+     */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public JSONResult<Boolean> addUser(@RequestBody User user) {
         System.out.println("注册用户：");
@@ -25,18 +40,36 @@ public class UserController {
         }
     }
 
+    /**
+     * 修改用户
+     *
+     * @param user 用户信息
+     * @return 修改结果
+     */
     @RequestMapping(value = "/userUpdate", method = RequestMethod.POST)
     public boolean updateUser(@RequestBody User user) {
         System.out.println("更新数据：");
         return userService.updateUser(user);
     }
 
+    /**
+     * 删除用户
+     *
+     * @param Id id
+     * @return 删除结果
+     */
     @RequestMapping(value = "/userDelete", method = RequestMethod.POST)
     public boolean delete(@RequestParam(value = "id", required = true) int Id) {
         System.out.println("删除数据：");
         return userService.deleteUser(Id);
     }
 
+    /**
+     * 登录
+     *
+     * @param user 用户信息
+     * @return 登录结果
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public JSONResult<String> findByUserName(@RequestBody User user) {
         System.out.println("查询数据：" + user.getUsername());
@@ -50,6 +83,11 @@ public class UserController {
         }
     }
 
+    /**
+     * 查询所有用户
+     *
+     * @return 用户列表
+     */
     @RequestMapping(value = "/userAll", method = RequestMethod.GET)
     public JSONResult<List<User>> findByUserAge() {
         System.out.println("查询所有数据:");

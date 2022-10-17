@@ -1,6 +1,10 @@
 package com.example.spring.bean;
 
+/**
+ * @author TwinkleDing
+ */
 public class User {
+
     private String id;
 
     private String email;

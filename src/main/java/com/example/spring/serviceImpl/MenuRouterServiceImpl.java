@@ -8,13 +8,26 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author TwinkleDing
+ */
 @Service
 public class MenuRouterServiceImpl implements MenuRouterService {
-    @Autowired
-    private MenuRouterDao menuRouterDao;
 
+    private MenuRouterDao menuRouterDao = null;
+
+    @Autowired
+    public void menuRouterController(MenuRouterDao menuRouterDao) {
+        this.menuRouterDao = menuRouterDao;
+    }
+
+    /**
+     * 获取路由列表
+     *
+     * @return 路由列表
+     */
     @Override
     public List<MenuRouter> getRouterList() {
-         return menuRouterDao.getRouterList();
+        return menuRouterDao.getRouterList();
     }
 }

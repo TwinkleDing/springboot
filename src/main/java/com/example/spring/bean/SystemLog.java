@@ -1,5 +1,8 @@
 package com.example.spring.bean;
 
+/**
+ * @author TwinkleDing
+ */
 public class SystemLog {
 
     private String id;
@@ -30,11 +33,11 @@ public class SystemLog {
         this.id = id;
     }
 
-    public String getLog_content() {
+    public String getLogContent() {
         return log_content;
     }
 
-    public void setLog_content(String log_content) {
+    public void setLogContent(String log_content) {
         this.log_content = log_content;
     }
 
@@ -70,35 +73,35 @@ public class SystemLog {
         this.method = method;
     }
 
-    public String getCost_time() {
+    public String getCostTime() {
         return cost_time;
     }
 
-    public void setCost_time(String cost_time) {
+    public void setCostTime(String cost_time) {
         this.cost_time = cost_time;
     }
 
-    public String getCreate_by() {
+    public String getCreateBy() {
         return create_by;
     }
 
-    public void setCreate_by(String create_by) {
+    public void setCreateBy(String create_by) {
         this.create_by = create_by;
     }
 
-    public String getCreate_time() {
+    public String getCreateTime() {
         return create_time;
     }
 
-    public void setCreate_time(String create_time) {
+    public void setCreateTime(String create_time) {
         this.create_time = create_time;
     }
 
-    public int getLog_type() {
+    public int getLogType() {
         return log_type;
     }
 
-    public void setLog_type(int log_type) {
+    public void setLogType(int log_type) {
         this.log_type = log_type;
     }
 }

@@ -5,7 +5,11 @@ import com.example.spring.bean.MenuRouter;
 import java.util.List;
 
 
+/**
+ * @author TwinkleDing
+ */
 public interface MenuRouterService {
+
     /**
      * 获取路由列表
      *

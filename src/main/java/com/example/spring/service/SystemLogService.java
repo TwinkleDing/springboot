@@ -4,12 +4,16 @@ import com.example.spring.bean.SystemLog;
 
 import java.util.List;
 
+/**
+ * @author TwinkleDing
+ */
 public interface SystemLogService {
+
     /**
      * 获取日志列表
      *
      * @param start 开始下标
-     * @param end 结束下标
+     * @param end   结束下标
      * @return 日志列表
      */
     List<SystemLog> getSystemLogList(int start, int end);
@@ -23,6 +27,7 @@ public interface SystemLogService {
 
     /**
      * 删除指定日志
+     *
      * @param id 日志id
      * @return 是否删除成功
      */
@@ -30,6 +35,7 @@ public interface SystemLogService {
 
     /**
      * 删除选中日志
+     *
      * @param idList id列表
      * @return 是否删除成功
      */
@@ -37,6 +43,7 @@ public interface SystemLogService {
 
     /**
      * 删除全部日志
+     *
      * @return 是否删除成功
      */
     boolean deleteLogAll();

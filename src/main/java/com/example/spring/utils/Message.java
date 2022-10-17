@@ -3,10 +3,15 @@ package com.example.spring.utils;
 
 import org.springframework.http.HttpStatus;
 
+/**
+ * @author TwinkleDing
+ */
 public class Message<T> {
 
     int status;
-    //向前端返回的内容
+    /**
+     * 向前端返回的内容
+     */
     String message;
 
     T data;

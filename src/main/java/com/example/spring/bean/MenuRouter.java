@@ -5,8 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
+/**
+ * @author TwinkleDing
+ */
 @Slf4j
 public class MenuRouter {
+
     private String path;
 
     private String name;
@@ -67,16 +71,16 @@ public class MenuRouter {
         return this.menu_id;
     }
 
-    public void setMenuId(String menu_id) {
-        this.menu_id = menu_id;
+    public void setMenuId(String menuId) {
+        this.menu_id = menuId;
     }
 
     public String getParentId() {
         return this.parent_id;
     }
 
-    public void setParentId(String parent_id) {
-        this.parent_id = parent_id;
+    public void setParentId(String parentId) {
+        this.parent_id = parentId;
     }
 
     public void setLabel(String label) {

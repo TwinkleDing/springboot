@@ -1,5 +1,8 @@
 package com.example.spring.utils;
 
+/**
+ * @author TwinkleDing
+ */
 public class MetaConfig {
     private String label;
 

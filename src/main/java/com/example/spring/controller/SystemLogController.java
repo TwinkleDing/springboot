@@ -11,13 +11,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author TwinkleDing
+ */
 @RestController
 @RequestMapping(value = "/api/")
 @Slf4j
 public class SystemLogController {
-    @Autowired
-    private SystemLogService systemLogService;
 
+    private final SystemLogService systemLogService;
+
+    @Autowired
+    public SystemLogController(SystemLogService systemLogService) {
+        this.systemLogService = systemLogService;
+    }
+
+    /**
+     * 获取日志列表
+     *
+     * @param number 页码
+     * @param size   每页数量
+     * @return 日志列表
+     */
     @RequestMapping(value = "/systemLog", method = RequestMethod.GET)
     public JSONResult<Page<SystemLog>> getSystemLogList(@RequestParam(value = "number", required = true) int number, @RequestParam(value = "size", required = true) int size) {
         List<SystemLog> list = systemLogService.getSystemLogList((number - 1) * size, size);
@@ -30,6 +45,12 @@ public class SystemLogController {
         return JSONResult.successGet(page);
     }
 
+    /**
+     * 删除日志
+     *
+     * @param id 日志id
+     * @return 删除结果
+     */
     @RequestMapping(value = "/systemLog", method = RequestMethod.DELETE)
     public JSONResult<String> deleteLog(@RequestBody String id) {
         boolean deleteFlag = systemLogService.deleteLog(id);
@@ -40,10 +61,15 @@ public class SystemLogController {
         }
     }
 
+    /**
+     * 批量删除
+     *
+     * @param idList id列表
+     * @return 删除结果
+     */
     @RequestMapping(value = "/systemLog/deleteSelect", method = RequestMethod.DELETE)
     public JSONResult<String> deleteLogSelect(@RequestBody String[] idList) {
         log.info(Arrays.toString(idList));
-        log.info(String.valueOf(idList));
         boolean deleteFlag = systemLogService.deleteLogSelect(idList);
         if (deleteFlag) {
             return JSONResult.successDelete();
@@ -52,6 +78,11 @@ public class SystemLogController {
         }
     }
 
+    /**
+     * 全部删除
+     *
+     * @return 删除结果
+     */
     @RequestMapping(value = "/systemLog/deleteAll", method = RequestMethod.DELETE)
     public JSONResult<String> deleteLogAll() {
         boolean deleteFlag = systemLogService.deleteLogAll();

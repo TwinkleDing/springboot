@@ -5,10 +5,16 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+/**
+ * @author TwinkleDing
+ */
 @Mapper
 public interface MenuRouterDao {
+
     /**
      * 获取路由信息
+     *
+     * @return List 路由列表
      */
     @Select("select * FROM menu_router")
     List<MenuRouter> getRouterList();

@@ -3,6 +3,9 @@ package com.example.spring.utils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+/**
+ * @author TwinkleDing
+ */
 public class JSONResult<T> extends ResponseEntity<Message<T>> {
 
     public JSONResult(HttpStatus status) {
