@@ -1,7 +1,6 @@
 package com.example.spring.serviceImpl;
 
 import com.example.spring.bean.User;
-import com.example.spring.dao.MenuRouterDao;
 import com.example.spring.dao.UserDao;
 import com.example.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
