@@ -16,13 +16,13 @@ public interface SystemLogDao {
 
     /**
      * 获取日志列表
-     * // @Select("select * FROM sys_log where id > #{start} order by id limit #{end}")
+     * // @Select("SELECT * FROM sys_log where id > #{start} order by id limit #{end}")
      *
      * @param start 开始下标
      * @param end   结束下标
      * @return 返回列表
      */
-    @Select("select * FROM sys_log LIMIT #{start} , #{end}")
+    @Select("SELECT * FROM sys_log LIMIT #{start} , #{end}")
     List<SystemLog> getSystemLogList(int start, int end);
 
     /**
@@ -30,7 +30,7 @@ public interface SystemLogDao {
      *
      * @return 日志的总数量
      */
-    @Select("select count(id) from sys_log")
+    @Select("SELECT count(id) FROM sys_log")
     int getSystemLogTotal();
 
     /**
@@ -38,7 +38,7 @@ public interface SystemLogDao {
      *
      * @param id id
      */
-    @Delete("delete from sys_log where id=#{id}")
+    @Delete("DELETE FROM sys_log WHERE id=#{id}")
     void deleteLog(String id);
 
     /**
@@ -51,6 +51,6 @@ public interface SystemLogDao {
     /**
      * 全部删除
      */
-    @Delete("truncate table sys_log")
+    @Delete("TRUNCATE TABLE sys_log")
     void deleteLogAll();
 }

@@ -16,6 +16,6 @@ public interface MenuRouterDao {
      *
      * @return List 路由列表
      */
-    @Select("select * FROM menu_router")
+    @Select("SELECT * FROM menu_router")
     List<MenuRouter> getRouterList();
 }

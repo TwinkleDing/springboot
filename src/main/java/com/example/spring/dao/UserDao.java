@@ -17,7 +17,7 @@ public interface UserDao {
      *
      * @param user 新注册的用户信息
      */
-    @Insert("insert into user(password,username,id) values (#{password},#{username},#{id})")
+    @Insert("INSERT INTO user(password,username,id) VALUES (#{password},#{username},#{id})")
     void addUser(User user);
 
     /**
@@ -25,7 +25,7 @@ public interface UserDao {
      *
      * @param user 修改的用户信息
      */
-    @Update("update user set username=#{username},password=#{password} where id=#{id}")
+    @Update("UPDATE user SET username=#{username},password=#{password} WHERE id=#{id}")
     void updateUser(User user);
 
     /**
@@ -33,7 +33,7 @@ public interface UserDao {
      *
      * @param id 删除的用户id
      */
-    @Delete("delete from user where id=#{id}")
+    @Delete("DELETE FROM user WHERE id=#{id}")
     void deleteUser(int id);
 
     /**
@@ -42,7 +42,7 @@ public interface UserDao {
      * @param userName 查询的用户名称
      * @return 返回查询到的用户名称
      */
-    @Select("select username from user where username=#{userName}")
+    @Select("SELECT username FROM user WHERE username=#{userName}")
     String findByName(@Param("userName") String userName);
 
     /**
@@ -52,7 +52,7 @@ public interface UserDao {
      * @param password 用户密码
      * @return 返回查询到的数据
      */
-    @Select("select username from user where username=#{userName} AND password=#{password}")
+    @Select("SELECT username FROM user WHERE username=#{userName} AND password=#{password}")
     String findUserByNamePassword(@Param("userName") String userName, @Param("password") String password);
 
     /**
@@ -60,6 +60,6 @@ public interface UserDao {
      *
      * @return 返回全部用户信息
      */
-    @Select("select id,email,password,username FROM user")
+    @Select("SELECT id,email,password,username FROM user")
     List<User> findAll();
 }
