@@ -44,6 +44,12 @@ public class TableTestController {
         return JSONResult.successGet(page);
     }
 
+    /**
+     * 新增修改
+     *
+     * @param tableTest 数据
+     * @return 操作结果
+     */
     @RequestMapping(value = "/tableTest", method = RequestMethod.POST)
     public JSONResult<String> addTable(@RequestBody TableTest tableTest) {
         boolean flag = false;
@@ -53,9 +59,20 @@ public class TableTestController {
             flag = tableTestService.updateTable(tableTest);
         }
         if (flag) {
-            return JSONResult.successAdd(null);
+            return JSONResult.success();
         } else {
-            return JSONResult.failedAdd("添加失败！");
+            return JSONResult.failed();
+        }
+    }
+
+    @RequestMapping(value = "/tableVolume", method = RequestMethod.POST)
+    public JSONResult<String> volumeInsertTable(@RequestBody List<TableTest> list) {
+        boolean flag = false;
+        flag = tableTestService.volumeInsertTable(list);
+        if (flag) {
+            return JSONResult.success();
+        } else {
+            return JSONResult.failed();
         }
     }
 }

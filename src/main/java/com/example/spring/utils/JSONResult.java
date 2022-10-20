@@ -52,6 +52,10 @@ public class JSONResult<T> extends ResponseEntity<Message<T>> {
         return new JSONResult<>(200, "删除成功！", null);
     }
 
+    public static <T> JSONResult<T> failed() {
+        return new JSONResult<>(500, "操作失败！", null);
+    }
+
     public static <T> JSONResult<T> failed(T data) {
         return new JSONResult<>(500, "操作失败！", data);
     }

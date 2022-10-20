@@ -50,17 +50,17 @@ public class TableTestServiceImpl implements TableTestService {
         return tableTestDao.getListTotal();
     }
 
+    /**
+     * 新增
+     *
+     * @param tableTest 添加的数据
+     * @return 新增结果
+     */
     @Override
     public boolean addTable(TableTest tableTest) {
         boolean flag = false;
         try {
-            String s = UUID.randomUUID().toString();
-            String id = s.substring(0, 8) + s.substring(9, 13) + s.substring(14, 18) + s.substring(19, 23) + s.substring(24);
-            tableTest.setId(id);
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String creatTime = df.format(new Date());
-            tableTest.setCreateTime(creatTime);
-            tableTestDao.addTable(tableTest);
+            tableTestDao.addTable(createId(tableTest));
             flag = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,6 +68,12 @@ public class TableTestServiceImpl implements TableTestService {
         return flag;
     }
 
+    /**
+     * 修改数据
+     *
+     * @param tableTest 修改数据
+     * @return 修改结果
+     */
     @Override
     public boolean updateTable(TableTest tableTest) {
         boolean flag = false;
@@ -78,5 +84,36 @@ public class TableTestServiceImpl implements TableTestService {
             e.printStackTrace();
         }
         return flag;
+    }
+
+    /**
+     * 批量新增
+     *
+     * @param tableTests 列表
+     * @return 新增结果
+     */
+    @Override
+    public boolean volumeInsertTable(List<TableTest> tableTests) {
+        boolean flag = false;
+        try {
+            for (TableTest l : tableTests) {
+                createId(l);
+            }
+            tableTestDao.volumeIncrease(tableTests);
+            flag = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+    private TableTest createId(TableTest t) {
+        String s = UUID.randomUUID().toString();
+        String id = s.substring(0, 8) + s.substring(9, 13) + s.substring(14, 18) + s.substring(19, 23) + s.substring(24);
+        t.setId(id);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String creatTime = df.format(new Date());
+        t.setCreateTime(creatTime);
+        return t;
     }
 }

@@ -40,4 +40,11 @@ public interface TableTestService {
      * @return 是否修改成功
      */
     boolean updateTable(TableTest tableTest);
+
+    /**
+     * 批量新增
+     * @param list 列表
+     * @return 是否添加成功
+     */
+    boolean volumeInsertTable(List<TableTest> list);
 }

@@ -48,4 +48,11 @@ public interface TableTestDao {
      */
     @Update("UPDATE test_table SET name=#{name}, create_time=#{create_time}, content=#{content}, quantity=#{quantity}, state=#{state}, type=#{type} WHERE id=#{id}")
     void updateTable(TableTest tableTest);
+
+    /**
+     * 批量增加
+     *
+     * @param list 列表
+     */
+    void volumeIncrease(List<TableTest> list);
 }

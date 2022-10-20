@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.spring.dao.TableTestDao">
+    <insert id="volumeIncrease" parameterType="com.example.spring.bean.TableTest">
+        INSERT INTO test_table(
+        id,
+        name,
+        create_time,
+        content,
+        quantity,
+        state,
+        type
+        ) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id},
+            #{item.name},
+            #{item.create_time},
+            #{item.content},
+            #{item.quantity},
+            #{item.state},
+            #{item.type}
+            )
+        </foreach>
+    </insert>
+</mapper>
