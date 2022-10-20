@@ -1,10 +1,7 @@
 package com.example.spring.dao;
 
 import com.example.spring.bean.TableTest;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -22,7 +19,7 @@ public interface TableTestDao {
      * @param searchName 搜索条件
      * @return 返回列表
      */
-    @Select("SELECT * FROM test_table WHERE name LIKE #{searchName} ORDER BY sort")
+    @Select("SELECT * FROM test_table WHERE name LIKE #{searchName} ORDER BY sort LIMIT #{start} , #{end}")
     List<TableTest> getList(int start, int end, String searchName);
 
     /**
@@ -54,5 +51,12 @@ public interface TableTestDao {
      *
      * @param list 列表
      */
-    void volumeIncrease(List<TableTest> list);
+    void volumeIncrease(@Param("list") List<TableTest> list);
+
+    /**
+     * 批量删除
+     *
+     * @param idList id列表
+     */
+    void batchDelete(@Param("idList") String[] idList);
 }

@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.spring.dao.TableTestDao">
-    <insert id="volumeIncrease" parameterType="com.example.spring.bean.TableTest">
+    <insert id="volumeIncrease">
         INSERT INTO test_table(
         id,
         name,
@@ -25,4 +25,11 @@
             )
         </foreach>
     </insert>
+
+    <delete id="batchDelete" parameterType="String">
+        DELETE FROM test_table WHERE id IN
+        <foreach item="id" collection="idList" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>

@@ -12,8 +12,8 @@ public interface TableTestService {
     /**
      * 获取列表
      *
-     * @param start 起始页码
-     * @param end   结束页码
+     * @param start      起始页码
+     * @param end        结束页码
      * @param searchName 搜索条件
      * @return 返回列表
      */
@@ -35,7 +35,8 @@ public interface TableTestService {
     boolean addTable(TableTest tableTest);
 
     /**
-     *  修改数据
+     * 修改数据
+     *
      * @param tableTest 修改数据
      * @return 是否修改成功
      */
@@ -43,8 +44,17 @@ public interface TableTestService {
 
     /**
      * 批量新增
+     *
      * @param list 列表
      * @return 是否添加成功
      */
     boolean volumeInsertTable(List<TableTest> list);
+
+    /**
+     * 批量删除
+     *
+     * @param list id列表
+     * @return 删除结果
+     */
+    boolean batchDelete(String[] list);
 }

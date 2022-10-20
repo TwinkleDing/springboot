@@ -107,6 +107,18 @@ public class TableTestServiceImpl implements TableTestService {
         return flag;
     }
 
+    @Override
+    public boolean batchDelete(String[] list) {
+        boolean flag = false;
+        try {
+            tableTestDao.batchDelete(list);
+            flag = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
     private TableTest createId(TableTest t) {
         String s = UUID.randomUUID().toString();
         String id = s.substring(0, 8) + s.substring(9, 13) + s.substring(14, 18) + s.substring(19, 23) + s.substring(24);

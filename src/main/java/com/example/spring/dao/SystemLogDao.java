@@ -16,7 +16,6 @@ public interface SystemLogDao {
 
     /**
      * 获取日志列表
-     * // @Select("SELECT * FROM sys_log where id > #{start} order by id limit #{end}")
      *
      * @param start 开始下标
      * @param end   结束下标

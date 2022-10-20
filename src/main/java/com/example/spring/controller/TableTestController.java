@@ -31,9 +31,10 @@ public class TableTestController {
      * @return 列表
      */
     @RequestMapping(value = "/tableTest", method = RequestMethod.GET)
-    public JSONResult<Page<TableTest>> getList(@RequestParam(value = "number", required = true) int number,
-                                               @RequestParam(value = "size", required = true) int size,
-                                               @RequestParam(value = "searchName", required = false) String searchName) {
+    public JSONResult<Page<TableTest>> getList(
+            @RequestParam(value = "number", required = true) int number,
+            @RequestParam(value = "size", required = true) int size,
+            @RequestParam(value = "searchName", required = false) String searchName) {
         List<TableTest> list = tableTestService.getList((number - 1) * size, size, searchName);
         int total = tableTestService.getListTotal();
         Page<TableTest> page = new Page<>();
@@ -52,7 +53,7 @@ public class TableTestController {
      */
     @RequestMapping(value = "/tableTest", method = RequestMethod.POST)
     public JSONResult<String> addTable(@RequestBody TableTest tableTest) {
-        boolean flag = false;
+        boolean flag;
         if (tableTest.getId() == null) {
             flag = tableTestService.addTable(tableTest);
         } else {
@@ -65,10 +66,33 @@ public class TableTestController {
         }
     }
 
+    /**
+     * 批量新增
+     *
+     * @param list 列表
+     * @return 新增结果
+     */
     @RequestMapping(value = "/tableVolume", method = RequestMethod.POST)
     public JSONResult<String> volumeInsertTable(@RequestBody List<TableTest> list) {
-        boolean flag = false;
+        boolean flag;
         flag = tableTestService.volumeInsertTable(list);
+        if (flag) {
+            return JSONResult.success();
+        } else {
+            return JSONResult.failed();
+        }
+    }
+
+    /**
+     * 批量删除
+     *
+     * @param list id列表
+     * @return 删除结果
+     */
+    @RequestMapping(value = "/tableDelete", method = RequestMethod.DELETE)
+    public JSONResult<String> batchDelete(@RequestBody String[] list) {
+        boolean flag;
+        flag = tableTestService.batchDelete(list);
         if (flag) {
             return JSONResult.success();
         } else {
