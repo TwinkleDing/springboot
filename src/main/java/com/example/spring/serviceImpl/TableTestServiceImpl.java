@@ -32,12 +32,17 @@ public class TableTestServiceImpl implements TableTestService {
      * @param start      起始页码
      * @param end        结束页码
      * @param searchName 搜索条件
+     * @param sort  排序方式
      * @return 列表
      */
     @Override
-    public List<TableTest> getList(int start, int end, String searchName) {
+    public List<TableTest> getList(int start, int end, String searchName, String sort) {
         String name = "%" + searchName + "%";
-        return tableTestDao.getList(start, end, name);
+        if ("desc".equals(sort)) {
+            return tableTestDao.getListDesc(start, end, name);
+        } else {
+            return tableTestDao.getList(start, end, name);
+        }
     }
 
     /**
@@ -60,7 +65,7 @@ public class TableTestServiceImpl implements TableTestService {
     public boolean addTable(TableTest tableTest) {
         boolean flag = false;
         try {
-            tableTestDao.addTable(createId(tableTest));
+            tableTestDao.addTable(createIdTime(tableTest));
             flag = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -97,7 +102,7 @@ public class TableTestServiceImpl implements TableTestService {
         boolean flag = false;
         try {
             for (TableTest l : tableTests) {
-                createId(l);
+                createIdTime(l);
             }
             tableTestDao.volumeIncrease(tableTests);
             flag = true;
@@ -107,6 +112,11 @@ public class TableTestServiceImpl implements TableTestService {
         return flag;
     }
 
+    /**
+     * 批量删除
+     * @param list id列表
+     * @return 删除结果
+     */
     @Override
     public boolean batchDelete(String[] list) {
         boolean flag = false;
@@ -119,7 +129,12 @@ public class TableTestServiceImpl implements TableTestService {
         return flag;
     }
 
-    private TableTest createId(TableTest t) {
+    /**
+     * 新增数据时创建id和create_time
+     * @param t table信息
+     * @return table信息
+     */
+    private TableTest createIdTime(TableTest t) {
         String s = UUID.randomUUID().toString();
         String id = s.substring(0, 8) + s.substring(9, 13) + s.substring(14, 18) + s.substring(19, 23) + s.substring(24);
         t.setId(id);

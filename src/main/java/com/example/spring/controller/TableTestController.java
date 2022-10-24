@@ -34,8 +34,9 @@ public class TableTestController {
     public JSONResult<Page<TableTest>> getList(
             @RequestParam(value = "number", required = true) int number,
             @RequestParam(value = "size", required = true) int size,
-            @RequestParam(value = "searchName", required = false) String searchName) {
-        List<TableTest> list = tableTestService.getList((number - 1) * size, size, searchName);
+            @RequestParam(value = "searchName", required = false) String searchName,
+            @RequestParam(value = "sort", required = false) String sort) {
+        List<TableTest> list = tableTestService.getList((number - 1) * size, size, searchName, sort);
         int total = tableTestService.getListTotal();
         Page<TableTest> page = new Page<>();
         page.setNumber(number);

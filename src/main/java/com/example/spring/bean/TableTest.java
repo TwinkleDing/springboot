@@ -15,6 +15,8 @@ public class TableTest {
 
     private String type;
 
+    private String quantity_name;
+
     private int sort;
 
     private int quantity;
@@ -83,5 +85,13 @@ public class TableTest {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getQuantityName() {
+        return quantity_name;
+    }
+
+    public void setQuantityName(String type) {
+        this.quantity_name = quantity_name;
     }
 }
