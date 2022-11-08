@@ -66,10 +66,24 @@ public interface TableTestDao {
     /**
      * 获取数量
      *
+     * @param start      起始页码
+     * @param end        终止页码
+     * @param searchName 搜索条件
      * @return 总数量
      */
-    @Select("SELECT count(sort) FROM test_table")
-    int getListTotal();
+    @Select("SELECT count(sort) FROM test_table WHERE name LIKE #{searchName} ORDER BY sort LIMIT #{start} , #{end}")
+    int getListTotal(int start, int end, String searchName);
+    /**
+     * 获取数量
+     *
+     * @param start      起始页码
+     * @param end        终止页码
+     * @param searchName 搜索条件
+     * @param quantity   搜索条件
+     * @return 总数量
+     */
+    @Select("SELECT count(sort) FROM test_table WHERE name LIKE #{searchName} AND quantity LIKE #{quantity} ORDER BY sort LIMIT #{start} , #{end}")
+    int getListTotalQ(int start, int end, String searchName, int quantity);
 
     /**
      * 新增数据

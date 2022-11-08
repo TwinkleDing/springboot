@@ -38,7 +38,7 @@ public class TableTestController {
             @RequestParam(value = "sort", required = false) String sort,
             @RequestParam(value = "quantity", required = false) String quantity) {
         List<TableTest> list = tableTestService.getList((number - 1) * size, size, searchName, sort, quantity);
-        int total = tableTestService.getListTotal();
+        int total = tableTestService.getListTotal((number - 1) * size, size, searchName, sort, quantity);
         Page<TableTest> page = new Page<>();
         page.setNumber(number);
         page.setPageSize(size);

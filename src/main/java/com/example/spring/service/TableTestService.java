@@ -24,9 +24,14 @@ public interface TableTestService {
     /**
      * 获取列表总数量
      *
+     * @param start      起始页码
+     * @param end        结束页码
+     * @param searchName 搜索条件
+     * @param sort       排序方式
+     * @param quantity   排序方式
      * @return 列表总数量
      */
-    int getListTotal();
+    int getListTotal(int start, int end, String searchName, String sort, String quantity);
 
     /**
      * 添加数据
