@@ -32,16 +32,26 @@ public class TableTestServiceImpl implements TableTestService {
      * @param start      起始页码
      * @param end        结束页码
      * @param searchName 搜索条件
-     * @param sort  排序方式
+     * @param sort       排序方式
+     * @param quantity   排序方式
      * @return 列表
      */
     @Override
-    public List<TableTest> getList(int start, int end, String searchName, String sort) {
+    public List<TableTest> getList(int start, int end, String searchName, String sort, String quantity) {
         String name = "%" + searchName + "%";
-        if ("desc".equals(sort)) {
-            return tableTestDao.getListDesc(start, end, name);
+        String desc = "desc";
+        if (desc.equals(sort)) {
+            if (!"".equals(quantity)) {
+                return tableTestDao.getListDescQ(start, end, name, Integer.parseInt(quantity));
+            } else {
+                return tableTestDao.getListDesc(start, end, name);
+            }
         } else {
-            return tableTestDao.getList(start, end, name);
+            if (!"".equals(quantity)) {
+                return tableTestDao.getListQ(start, end, name, Integer.parseInt(quantity));
+            } else {
+                return tableTestDao.getList(start, end, name);
+            }
         }
     }
 
@@ -114,6 +124,7 @@ public class TableTestServiceImpl implements TableTestService {
 
     /**
      * 批量删除
+     *
      * @param list id列表
      * @return 删除结果
      */
@@ -131,6 +142,7 @@ public class TableTestServiceImpl implements TableTestService {
 
     /**
      * 新增数据时创建id和create_time
+     *
      * @param t table信息
      * @return table信息
      */

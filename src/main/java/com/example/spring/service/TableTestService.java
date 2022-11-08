@@ -15,10 +15,11 @@ public interface TableTestService {
      * @param start      起始页码
      * @param end        结束页码
      * @param searchName 搜索条件
-     * @param sort 排序方式
+     * @param sort       排序方式
+     * @param quantity   排序方式
      * @return 返回列表
      */
-    List<TableTest> getList(int start, int end, String searchName, String sort);
+    List<TableTest> getList(int start, int end, String searchName, String sort, String quantity);
 
     /**
      * 获取列表总数量

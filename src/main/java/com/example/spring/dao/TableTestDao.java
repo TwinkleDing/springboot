@@ -29,6 +29,18 @@ public interface TableTestDao {
     List<TableTest> getList(int start, int end, String searchName);
 
     /**
+     * 获取列表
+     *
+     * @param start      起始页码
+     * @param end        终止页码
+     * @param searchName 搜索条件
+     * @param quantity   搜索条件
+     * @return 返回列表
+     */
+    @Select("SELECT * FROM quantity_name q, test_table t WHERE q.quantity = t.quantity AND name LIKE #{searchName} AND t.quantity LIKE #{quantity} ORDER BY sort LIMIT #{start} , #{end}")
+    List<TableTest> getListQ(int start, int end, String searchName, int quantity);
+
+    /**
      * 获取反序列表
      *
      * @param start      起始页码
@@ -38,6 +50,18 @@ public interface TableTestDao {
      */
     @Select("SELECT * FROM quantity_name q, test_table t WHERE q.quantity = t.quantity AND name LIKE #{searchName} ORDER BY sort DESC LIMIT #{start} , #{end}")
     List<TableTest> getListDesc(int start, int end, String searchName);
+
+    /**
+     * 获取反序列表
+     *
+     * @param start      起始页码
+     * @param end        终止页码
+     * @param searchName 搜索条件
+     * @param quantity   搜索条件
+     * @return 返回列表
+     */
+    @Select("SELECT * FROM quantity_name q, test_table t WHERE q.quantity = t.quantity AND name LIKE #{searchName} AND t.quantity LIKE #{quantity} ORDER BY sort DESC LIMIT #{start} , #{end}")
+    List<TableTest> getListDescQ(int start, int end, String searchName, int quantity);
 
     /**
      * 获取数量
