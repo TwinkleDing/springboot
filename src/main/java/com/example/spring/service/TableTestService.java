@@ -31,7 +31,7 @@ public interface TableTestService {
      * @param quantity   排序方式
      * @return 列表总数量
      */
-    int getListTotal(int start, int end, String searchName, String sort, String quantity);
+    int getListTotal(String searchName, String sort, String quantity);
 
     /**
      * 添加数据

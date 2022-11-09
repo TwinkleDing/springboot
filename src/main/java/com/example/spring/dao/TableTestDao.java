@@ -32,13 +32,11 @@ public interface TableTestDao {
     /**
      * 获取数量
      *
-     * @param start      起始页码
-     * @param end        终止页码
      * @param searchName 搜索条件
      * @param quantity   搜索条件
      * @return 总数量
      */
-    int getListTotal(@Param("start") int start, @Param("end") int end, @Param("searchName") String searchName, @Param("quantity") String quantity);
+    int getListTotal(@Param("searchName") String searchName, @Param("quantity") String quantity);
 
     /**
      * 新增数据

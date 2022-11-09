@@ -44,16 +44,14 @@ public class TableTestServiceImpl implements TableTestService {
     /**
      * 列表数量
      *
-     * @param start      起始页码
-     * @param end        结束页码
      * @param searchName 搜索条件
      * @param sort       排序方式
      * @param quantity   排序方式
      * @return 数量
      */
     @Override
-    public int getListTotal(int start, int end, String searchName, String sort, String quantity) {
-        return tableTestDao.getListTotal(start, end, searchName, quantity);
+    public int getListTotal(String searchName, String sort, String quantity) {
+        return tableTestDao.getListTotal(searchName, quantity);
 
     }
 

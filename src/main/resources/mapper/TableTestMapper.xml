@@ -24,7 +24,6 @@
             AND quantity = #{quantity}
         </if>
         ORDER BY sort
-        LIMIT #{start} , #{end}
     </select>
 
     <insert id="volumeIncrease">
