@@ -53,12 +53,8 @@ public class TableTestServiceImpl implements TableTestService {
      */
     @Override
     public int getListTotal(int start, int end, String searchName, String sort, String quantity) {
-        String name = "%" + searchName + "%";
-        if (!"".equals(quantity)) {
-            return tableTestDao.getListTotalQ(start, end, name, Integer.parseInt(quantity));
-        } else {
-            return tableTestDao.getListTotal(start, end, name);
-        }
+        return tableTestDao.getListTotal(start, end, searchName, quantity);
+
     }
 
     /**
