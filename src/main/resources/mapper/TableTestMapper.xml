@@ -3,6 +3,22 @@
         PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.spring.dao.TableTestDao">
+    <select id="getList" resultType="com.example.spring.bean.TableTest">
+        SELECT *
+        FROM quantity_name q,
+        test_table t
+        WHERE q.quantity = t.quantity
+        AND t.name LIKE CONCAT('%', #{searchName}, '%')
+        <if test="quantity != ''">
+            AND t.quantity = #{quantity}
+        </if>
+        ORDER BY sort
+        <if test="sort == 'desc'">
+            DESC
+        </if>
+        LIMIT #{start} , #{end}
+
+    </select>
     <insert id="volumeIncrease">
         INSERT INTO test_table(
         id,

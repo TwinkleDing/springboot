@@ -17,6 +17,8 @@ public interface TableTestDao {
      * @param start      起始页码
      * @param end        终止页码
      * @param searchName 搜索条件
+     * @param quantity   搜索条件
+     * @param sort       排序
      * @return 返回列表
      * 右连接，，以右表为主表查询
      * // @Select("SELECT * FROM test_table t RIGHT JOIN quantity_name q ON q.quantity = t.quantity WHERE name LIKE #{searchName} ORDER BY sort LIMIT #{start} , #{end}")
@@ -25,43 +27,7 @@ public interface TableTestDao {
      * 所有联查
      * //  @Select("SELECT * FROM quantity_name q, test_table t WHERE q.quantity = t.quantity AND name LIKE #{searchName} ORDER BY sort LIMIT #{start} , #{end}")
      */
-    @Select("SELECT * FROM quantity_name q, test_table t WHERE q.quantity = t.quantity AND name LIKE #{searchName} ORDER BY sort LIMIT #{start} , #{end}")
-    List<TableTest> getList(int start, int end, String searchName);
-
-    /**
-     * 获取列表
-     *
-     * @param start      起始页码
-     * @param end        终止页码
-     * @param searchName 搜索条件
-     * @param quantity   搜索条件
-     * @return 返回列表
-     */
-    @Select("SELECT * FROM quantity_name q, test_table t WHERE q.quantity = t.quantity AND name LIKE #{searchName} AND t.quantity LIKE #{quantity} ORDER BY sort LIMIT #{start} , #{end}")
-    List<TableTest> getListQ(int start, int end, String searchName, int quantity);
-
-    /**
-     * 获取反序列表
-     *
-     * @param start      起始页码
-     * @param end        终止页码
-     * @param searchName 搜索条件
-     * @return 返回列表
-     */
-    @Select("SELECT * FROM quantity_name q, test_table t WHERE q.quantity = t.quantity AND name LIKE #{searchName} ORDER BY sort DESC LIMIT #{start} , #{end}")
-    List<TableTest> getListDesc(int start, int end, String searchName);
-
-    /**
-     * 获取反序列表
-     *
-     * @param start      起始页码
-     * @param end        终止页码
-     * @param searchName 搜索条件
-     * @param quantity   搜索条件
-     * @return 返回列表
-     */
-    @Select("SELECT * FROM quantity_name q, test_table t WHERE q.quantity = t.quantity AND name LIKE #{searchName} AND t.quantity LIKE #{quantity} ORDER BY sort DESC LIMIT #{start} , #{end}")
-    List<TableTest> getListDescQ(int start, int end, String searchName, int quantity);
+    List<TableTest> getList(@Param("start") int start, @Param("end") int end, @Param("searchName") String searchName, @Param("quantity") String quantity, @Param("sort") String sort);
 
     /**
      * 获取数量
@@ -73,6 +39,7 @@ public interface TableTestDao {
      */
     @Select("SELECT count(sort) FROM test_table WHERE name LIKE #{searchName} ORDER BY sort LIMIT #{start} , #{end}")
     int getListTotal(int start, int end, String searchName);
+
     /**
      * 获取数量
      *

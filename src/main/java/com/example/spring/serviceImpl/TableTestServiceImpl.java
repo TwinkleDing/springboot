@@ -38,21 +38,7 @@ public class TableTestServiceImpl implements TableTestService {
      */
     @Override
     public List<TableTest> getList(int start, int end, String searchName, String sort, String quantity) {
-        String name = "%" + searchName + "%";
-        String desc = "desc";
-        if (desc.equals(sort)) {
-            if (!"".equals(quantity)) {
-                return tableTestDao.getListDescQ(start, end, name, Integer.parseInt(quantity));
-            } else {
-                return tableTestDao.getListDesc(start, end, name);
-            }
-        } else {
-            if (!"".equals(quantity)) {
-                return tableTestDao.getListQ(start, end, name, Integer.parseInt(quantity));
-            } else {
-                return tableTestDao.getList(start, end, name);
-            }
-        }
+        return tableTestDao.getList(start, end, searchName, quantity, sort);
     }
 
     /**

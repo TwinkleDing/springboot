@@ -18,11 +18,11 @@ public class ZoneUtils {
     public static List<MenuRouter> buildTree2(List<MenuRouter> menuList) {
         List<MenuRouter> resultList = new ArrayList<>();
         for (MenuRouter menuRouter : menuList) {
-            if (menuRouter.getParentId().equals("0")) {
+            if (menuRouter.getParentId() == 0) {
                 resultList.add(menuRouter);
             }
             for (MenuRouter child : menuList) {
-                if (child.getParentId().equals(menuRouter.getMenuId())) {
+                if (child.getParentId() == menuRouter.getMenuId()) {
                     List<MenuRouter> children = menuRouter.getChildren();
                     if (children == null) {
                         children = new ArrayList<>();
@@ -36,23 +36,23 @@ public class ZoneUtils {
     }
 
     public static List<MenuRouter> buildTree3(List<MenuRouter> menuList) {
-        Map<String, List<MenuRouter>> routerMap = new HashMap<>();
+        Map<Integer, List<MenuRouter>> routerMap = new HashMap<>();
         menuList.forEach(menuRouter -> {
             List<MenuRouter> children = routerMap.getOrDefault(menuRouter.getParentId(), new ArrayList<>());
             children.add(menuRouter);
             routerMap.put(menuRouter.getParentId(), children);
         });
-        menuList.forEach(menuRouter -> {
-            menuRouter.setChildren(routerMap.get(menuRouter.getMenuId()));
-        });
-        return menuList.stream().filter(v -> v.getParentId().equals("0")).collect(Collectors.toList());
+        menuList.forEach(menuRouter ->
+                menuRouter.setChildren(routerMap.get(menuRouter.getMenuId()))
+        );
+        return menuList.stream().filter(v -> v.getParentId() == 0).collect(Collectors.toList());
     }
 
     public static List<MenuRouter> buildTree4(List<MenuRouter> menuList) {
-        Map<String, List<MenuRouter>> routerMap = menuList.stream().collect(Collectors.groupingBy(MenuRouter::getParentId));
-        menuList.forEach(menuRouter -> {
-            menuRouter.setChildren(routerMap.get(menuRouter.getMenuId()));
-        });
-        return menuList.stream().filter(v -> v.getParentId().equals("0")).collect(Collectors.toList());
+        Map<Integer, List<MenuRouter>> routerMap = menuList.stream().collect(Collectors.groupingBy(MenuRouter::getParentId));
+        menuList.forEach(menuRouter ->
+                menuRouter.setChildren(routerMap.get(menuRouter.getMenuId()))
+        );
+        return menuList.stream().filter(v -> v.getParentId() == 0).collect(Collectors.toList());
     }
 }

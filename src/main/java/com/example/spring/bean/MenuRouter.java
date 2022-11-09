@@ -19,13 +19,13 @@ public class MenuRouter {
 
     private String component;
 
-    private String menu_id;
-
-    private String parent_id;
-
     private String label;
 
     private String icon;
+
+    private int menu_id;
+
+    private int parent_id;
 
     private int permission;
 
@@ -67,19 +67,19 @@ public class MenuRouter {
         this.component = component;
     }
 
-    public String getMenuId() {
+    public int getMenuId() {
         return this.menu_id;
     }
 
-    public void setMenuId(String menuId) {
+    public void setMenuId(int menuId) {
         this.menu_id = menuId;
     }
 
-    public String getParentId() {
+    public int getParentId() {
         return this.parent_id;
     }
 
-    public void setParentId(String parentId) {
+    public void setParentId(int parentId) {
         this.parent_id = parentId;
     }
 
