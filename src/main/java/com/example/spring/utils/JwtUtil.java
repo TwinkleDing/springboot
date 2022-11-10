@@ -6,7 +6,9 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.DecodedJWT;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
@@ -79,13 +81,16 @@ public class JwtUtil {
      *
      * @param token token
      */
-    public static void checkSign(String token)  {
+    public static boolean checkSign(String token) {
+        boolean result = false;
         try {
             Algorithm algorithm = Algorithm.HMAC256(SECRET);
             JWTVerifier verifier = JWT.require(algorithm).build();
             verifier.verify(token);
-        } catch (JWTVerificationException e) {
-            throw new RuntimeException("token 无效，请重新获取！");
+            result = true;
+        } catch (Exception ignored) {
+
         }
+        return result;
     }
 }

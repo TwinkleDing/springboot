@@ -6,6 +6,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 import java.util.Objects;
 
@@ -23,20 +25,41 @@ public class JwInterceptor implements HandlerInterceptor {
 
         // 获取请求头的token
         String token = request.getHeader("token");
-        log.info("token" + token);
 
         if (token == null || "".equals(token)) {
             return false;
         }
 
         // 验证token是否正确
-        JwtUtil.checkSign(token);
+        if (!JwtUtil.checkSign(token)) {
+            result(response);
+            return false;
+        }
 
         String userId = JwtUtil.getUserId(token);
         Map<String, Object> info = JwtUtil.getInfo(token);
 
-//        // 重新设置token
-//        JwtUtil.sign(userId, info);
+        // 重新设置token
+        JwtUtil.sign(userId, info);
         return true;
+    }
+
+    private void result(HttpServletResponse response) {
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json; charset=utf-8");
+        response.setStatus(401);
+        PrintWriter out = null;
+        try {
+            out = response.getWriter();
+            out.append("token 失效，请重新登录！");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            {
+                if (out != null) {
+                    out.close();
+                }
+            }
+        }
     }
 }
