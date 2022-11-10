@@ -11,11 +11,11 @@ public class TableTest {
 
     private String content;
 
-    private String create_time;
+    private String createTime;
 
     private String type;
 
-    private String quantity_name;
+    private String quantityName;
 
     private int sort;
 
@@ -56,11 +56,11 @@ public class TableTest {
     }
 
     public String getCreateTime() {
-        return create_time;
+        return createTime;
     }
 
-    public void setCreateTime(String create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
     public int getQuantity() {
@@ -88,10 +88,10 @@ public class TableTest {
     }
 
     public String getQuantityName() {
-        return quantity_name;
+        return quantityName;
     }
 
-    public void setQuantityName(String type) {
-        this.quantity_name = quantity_name;
+    public void setQuantityName(String quantityName) {
+        this.quantityName = quantityName;
     }
 }

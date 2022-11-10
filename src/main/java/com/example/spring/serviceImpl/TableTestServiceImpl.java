@@ -52,7 +52,6 @@ public class TableTestServiceImpl implements TableTestService {
     @Override
     public int getListTotal(String searchName, String sort, String quantity) {
         return tableTestDao.getListTotal(searchName, quantity);
-
     }
 
     /**

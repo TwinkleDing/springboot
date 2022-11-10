@@ -51,7 +51,7 @@ public interface TableTestDao {
      *
      * @param tableTest 数据
      */
-    @Update("UPDATE test_table SET name=#{name}, create_time=#{create_time}, content=#{content}, quantity=#{quantity}, state=#{state}, type=#{type} WHERE id=#{id}")
+    @Update("UPDATE test_table SET name=#{name}, content=#{content}, quantity=#{quantity}, state=#{state}, type=#{type} WHERE id=#{id}")
     void updateTable(TableTest tableTest);
 
     /**
@@ -67,13 +67,4 @@ public interface TableTestDao {
      * @param idList id列表
      */
     void batchDelete(@Param("idList") String[] idList);
-
-    /**
-     * 获取quantityName
-     *
-     * @param quantity quantity
-     * @return quantityName
-     */
-    @Select("SELECT b.`name` FROM test_table a, quantity_name b WHERE a.quantity = #{quantity} AND b.quantity = #{quantity}")
-    String getQuantityName(int quantity);
 }
