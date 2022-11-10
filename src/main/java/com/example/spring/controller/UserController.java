@@ -4,16 +4,21 @@ import com.example.spring.bean.User;
 import com.example.spring.service.MenuRouterService;
 import com.example.spring.service.UserService;
 import com.example.spring.utils.JSONResult;
+import com.example.spring.utils.JwtUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author TwinkleDing
  */
+@Slf4j
 @RestController
-@RequestMapping(value = "/api/")
+@RequestMapping(value = "/auth/")
 public class UserController {
 
     private final UserService userService;
@@ -55,13 +60,13 @@ public class UserController {
     /**
      * 删除用户
      *
-     * @param Id id
+     * @param id id
      * @return 删除结果
      */
     @RequestMapping(value = "/userDelete", method = RequestMethod.POST)
-    public boolean delete(@RequestParam(value = "id", required = true) int Id) {
+    public boolean delete(@RequestParam(value = "id", required = true) int id) {
         System.out.println("删除数据：");
-        return userService.deleteUser(Id);
+        return userService.deleteUser(id);
     }
 
     /**
@@ -75,11 +80,15 @@ public class UserController {
         System.out.println("查询数据：" + user.getUsername());
         String userName = user.getUsername();
         String password = user.getPassword();
-        String hasUserName = userService.findUserByNamePassword(userName, password);
-        if (hasUserName == null) {
+        String userId = userService.findUserByNamePassword(userName, password);
+        if (userId == null) {
             return JSONResult.failedMsg("登录失败，账号或密码错误！");
         } else {
-            return JSONResult.success(hasUserName, "登录成功！");
+            Map<String, Object> info = new HashMap<>();
+            info.put("username", userName);
+            info.put("password", password);
+            String token = JwtUtil.sign(userId, info);
+            return JSONResult.success(token, "登录成功！");
         }
     }
 

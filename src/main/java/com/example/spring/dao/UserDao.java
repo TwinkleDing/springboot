@@ -52,7 +52,7 @@ public interface UserDao {
      * @param password 用户密码
      * @return 返回查询到的数据
      */
-    @Select("SELECT username FROM user WHERE username=#{userName} AND password=#{password}")
+    @Select("SELECT id FROM user WHERE username=#{userName} AND password=#{password}")
     String findUserByNamePassword(@Param("userName") String userName, @Param("password") String password);
 
     /**
