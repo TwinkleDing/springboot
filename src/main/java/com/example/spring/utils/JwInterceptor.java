@@ -1,6 +1,7 @@
 package com.example.spring.utils;
 
 import lombok.extern.slf4j.Slf4j;
+import net.minidev.json.JSONObject;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -47,11 +49,15 @@ public class JwInterceptor implements HandlerInterceptor {
     private void result(HttpServletResponse response) {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
-        response.setStatus(401);
+        response.setStatus(200);
         PrintWriter out = null;
         try {
             out = response.getWriter();
-            out.append("token 失效，请重新登录！");
+            Map<String, Object> info = new HashMap<>();
+            info.put("status", 401);
+            info.put("data", null);
+            info.put("message", "token 失效，请重新登录！");
+            out.append(JSONObject.toJSONString(info));
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
