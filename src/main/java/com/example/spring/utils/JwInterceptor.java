@@ -40,9 +40,9 @@ public class JwInterceptor implements HandlerInterceptor {
 
         String userId = JwtUtil.getUserId(token);
         Map<String, Object> info = JwtUtil.getInfo(token);
-
         // 重新设置token
-        JwtUtil.sign(userId, info);
+        String newToken = JwtUtil.sign(userId, info);
+        response.setHeader("token", newToken);
         return true;
     }
 
