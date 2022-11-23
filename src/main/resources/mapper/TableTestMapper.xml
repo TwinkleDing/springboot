@@ -40,7 +40,7 @@
             (
             #{item.id},
             #{item.name},
-            #{item.create_time},
+            #{item.createTime},
             #{item.content},
             #{item.quantity},
             #{item.state},

@@ -130,7 +130,7 @@ public class TableTestServiceImpl implements TableTestService {
     }
 
     /**
-     * 新增数据时创建id和create_time
+     * 新增数据时创建id和time
      *
      * @param t table信息
      * @return table信息

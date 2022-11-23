@@ -58,13 +58,17 @@ public class TableTestController {
         boolean flag;
         if (tableTest.getId() == null) {
             flag = tableTestService.addTable(tableTest);
+            if (flag) {
+                return JSONResult.successAdd();
+            }
+            return JSONResult.failedAdd();
+
         } else {
             flag = tableTestService.updateTable(tableTest);
-        }
-        if (flag) {
-            return JSONResult.success();
-        } else {
-            return JSONResult.failed();
+            if (flag) {
+                return JSONResult.successEdit();
+            }
+            return JSONResult.failedEdit();
         }
     }
 
@@ -80,9 +84,8 @@ public class TableTestController {
         flag = tableTestService.volumeInsertTable(list);
         if (flag) {
             return JSONResult.success();
-        } else {
-            return JSONResult.failed();
         }
+        return JSONResult.failed();
     }
 
     /**
@@ -96,9 +99,8 @@ public class TableTestController {
         boolean flag;
         flag = tableTestService.batchDelete(list);
         if (flag) {
-            return JSONResult.success();
-        } else {
-            return JSONResult.failed();
+            return JSONResult.successDelete();
         }
+        return JSONResult.failedDelete();
     }
 }

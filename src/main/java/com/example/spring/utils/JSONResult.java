@@ -40,12 +40,12 @@ public class JSONResult<T> extends ResponseEntity<Message<T>> {
         return new JSONResult<>(200, "查询成功！", data);
     }
 
-    public static <T> JSONResult<T> successAdd(T data) {
-        return new JSONResult<>(200, "添加成功！", data);
+    public static <T> JSONResult<T> successAdd() {
+        return new JSONResult<>(200, "添加成功！", null);
     }
 
-    public static <T> JSONResult<T> successEdit(T data) {
-        return new JSONResult<>(200, "修改成功！", data);
+    public static <T> JSONResult<T> successEdit() {
+        return new JSONResult<>(200, "修改成功！", null);
     }
 
     public static <T> JSONResult<T> successDelete() {
@@ -68,20 +68,20 @@ public class JSONResult<T> extends ResponseEntity<Message<T>> {
         return new JSONResult<>(500, msg);
     }
 
-    public static <T> JSONResult<T> failedGet(T data) {
-        return new JSONResult<>(500, "查询失败！", data);
+    public static <T> JSONResult<T> failedGet() {
+        return new JSONResult<>(500, "查询失败！", null);
     }
 
-    public static <T> JSONResult<T> failedAdd(T data) {
-        return new JSONResult<>(500, "添加失败！", data);
+    public static <T> JSONResult<T> failedAdd() {
+        return new JSONResult<>(500, "添加失败！", null);
     }
 
-    public static <T> JSONResult<T> failedEdit(T data) {
-        return new JSONResult<>(500, "修改失败！", data);
+    public static <T> JSONResult<T> failedEdit() {
+        return new JSONResult<>(500, "修改失败！", null);
     }
 
-    public static <T> JSONResult<T> failedDelete(T data) {
-        return new JSONResult<>(500, "删除失败！", data);
+    public static <T> JSONResult<T> failedDelete() {
+        return new JSONResult<>(500, "删除失败！", null);
     }
 
     public static <T> JSONResult<T> custom(int code, String msg, T data) {

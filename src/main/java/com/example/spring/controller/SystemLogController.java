@@ -57,7 +57,7 @@ public class SystemLogController {
         if (deleteFlag) {
             return JSONResult.successDelete();
         } else {
-            return JSONResult.failedDelete("删除失败，请重试！");
+            return JSONResult.failedDelete();
         }
     }
 
@@ -74,7 +74,7 @@ public class SystemLogController {
         if (deleteFlag) {
             return JSONResult.successDelete();
         } else {
-            return JSONResult.failedDelete("删除失败，请重试！");
+            return JSONResult.failedDelete();
         }
     }
 
@@ -89,7 +89,7 @@ public class SystemLogController {
         if (deleteFlag) {
             return JSONResult.successDelete();
         } else {
-            return JSONResult.failedDelete("删除失败，请重试！");
+            return JSONResult.failedDelete();
         }
     }
 }

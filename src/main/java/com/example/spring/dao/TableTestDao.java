@@ -43,7 +43,7 @@ public interface TableTestDao {
      *
      * @param tableTest 数据
      */
-    @Insert("INSERT INTO test_table(id, name, create_time, sort, content, quantity, state, type) VALUES (#{id}, #{name}, #{create_time}, #{sort}, #{content}, #{quantity}, #{state}, #{type})")
+    @Insert("INSERT INTO test_table(id, name, create_time, sort, content, quantity, state, type) VALUES (#{id}, #{name}, #{createTime}, #{sort}, #{content}, #{quantity}, #{state}, #{type})")
     void addTable(TableTest tableTest);
 
     /**
