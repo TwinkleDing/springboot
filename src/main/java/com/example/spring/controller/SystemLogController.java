@@ -54,11 +54,7 @@ public class SystemLogController {
     @RequestMapping(value = "/systemLog", method = RequestMethod.DELETE)
     public JSONResult<String> deleteLog(@RequestBody String id) {
         boolean deleteFlag = systemLogService.deleteLog(id);
-        if (deleteFlag) {
-            return JSONResult.successDelete();
-        } else {
-            return JSONResult.failedDelete();
-        }
+        return getStringJSONResult(deleteFlag);
     }
 
     /**
@@ -71,11 +67,7 @@ public class SystemLogController {
     public JSONResult<String> deleteLogSelect(@RequestBody String[] idList) {
         log.info(Arrays.toString(idList));
         boolean deleteFlag = systemLogService.deleteLogSelect(idList);
-        if (deleteFlag) {
-            return JSONResult.successDelete();
-        } else {
-            return JSONResult.failedDelete();
-        }
+        return getStringJSONResult(deleteFlag);
     }
 
     /**
@@ -86,6 +78,10 @@ public class SystemLogController {
     @RequestMapping(value = "/systemLog/deleteAll", method = RequestMethod.DELETE)
     public JSONResult<String> deleteLogAll() {
         boolean deleteFlag = systemLogService.deleteLogAll();
+        return getStringJSONResult(deleteFlag);
+    }
+
+    private static JSONResult<String> getStringJSONResult(boolean deleteFlag) {
         if (deleteFlag) {
             return JSONResult.successDelete();
         } else {
