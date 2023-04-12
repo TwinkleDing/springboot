@@ -3,7 +3,7 @@ package com.example.spring.study.Polymorphism;
 /**
  * @author TwinkleDing
  */
-public class Animal {
+public abstract class Animal {
 
     private int age;
     private String color;
@@ -42,7 +42,9 @@ public class Animal {
         this.name = name;
     }
 
-    public void eat(String food) {
-        System.out.println(this.name + "在吃" + food);
-    }
+    /**
+     * 动物吃东西
+     * @param food 食物
+     */
+    public abstract void eat(String food);
 }
