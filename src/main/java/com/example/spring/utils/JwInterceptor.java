@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * @author TwinkleDing
@@ -20,7 +19,7 @@ import java.util.Objects;
 public class JwInterceptor implements HandlerInterceptor {
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         if (!(handler instanceof HandlerMethod)) {
             return true;
         }
@@ -29,6 +28,7 @@ public class JwInterceptor implements HandlerInterceptor {
         String token = request.getHeader("token");
 
         if (token == null || "".equals(token)) {
+            result(response);
             return false;
         }
 
@@ -53,7 +53,7 @@ public class JwInterceptor implements HandlerInterceptor {
         PrintWriter out = null;
         try {
             out = response.getWriter();
-            Map<String, Object> info = new HashMap<>();
+            Map<String, Object> info = new HashMap<>(3);
             info.put("status", 401);
             info.put("data", null);
             info.put("message", "token 失效，请重新登录！");
